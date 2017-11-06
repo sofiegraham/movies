@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieList from './movielist';
 import SearchBar from './searchbar';
+import AddMovie from './addmovie';
 import movies from '../data/movies';
 
 
@@ -14,27 +15,34 @@ class App extends React.Component {
   }
 
   setSearchText = (value) => {
-    console.log("called", value);
     this.setState({
       searchText: value
+    });
+  }
+
+  addMovie = (movie) => {
+    let movieObj = {title: movie};
+    this.setState({
+      movies: movies.concat([movieObj])
     });
   }
  
   render() {
     return (
-      <div className="col-md-4 col-md-offset-4">
-        <h1 className="display-3">Movie List</h1>
-        <SearchBar searchText={this.state.searchText} setSearchText={this.setSearchText}/>
-        <MovieList movies={this.state.movies} />
-        <button
-        onClick={() => {
-          this.setState({ count: this.state.count + 1 });
-        }}
-      >
-        Count: {this.state.count}
-      </button>
+      <div className="container">
+        <div className="row">
+          <h1 className="display-3">Movie List</h1>
+        </div>
+        <div className="row">
+          <AddMovie addMovie={this.addMovie} />
+        </div>
+        <div className="row">
+          <SearchBar searchText={this.state.searchText} setSearchText={this.setSearchText}/>
+        </div>
+        <div className="row">
+          <MovieList movies={this.state.movies} searchText={this.state.searchText} />
+        </div>
       </div>
-      
     );
   }
 }
