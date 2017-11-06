@@ -18,6 +18,19 @@ module.exports = {
          'babel-loader',
        ],
      },
+     {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+      ],
+    },
+    {
+      test: /\.(woff|woff2|ttf|eot|svg)(\?[\s\S]+)?$/,
+      use: [
+        'file-loader',
+      ],
+    },
    ],
  },
  resolve: {

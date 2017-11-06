@@ -1,10 +1,11 @@
 console.log('File loaded yup yup!');
-import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './Counter';
+import App from './components/app';
+
 
  
 document.addEventListener('DOMContentLoaded', function() {
-  ReactDOM.render(<Counter/>, document.getElementById('mount'));
+  ReactDOM.render(<App  />, document.getElementById('mount'));
 });
