@@ -1,15 +1,24 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
- context: path.join(__dirname, 'src'),
- entry: [
-   './main.js',
- ],
- output: {
-   path: path.join(__dirname, 'www'),
-   filename: 'bundle.js',
- },
- module: {
+  context: path.join(__dirname, 'src'),
+  entry: [
+    './main.js',
+  ],
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
+  ],
+  module: {
    rules: [
      {
        test: /\.js$/,
@@ -37,5 +46,5 @@ module.exports = {
    modules: [
      path.join(__dirname, 'node_modules'),
    ],
- },
+  },
 };

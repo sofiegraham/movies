@@ -22,13 +22,15 @@ const MovieList = (props) => {
     )
   } else {
     renderedList = filteredMovies.map((movie, idx) => {
-      return <Movie movie={movie} key={idx} />
+      return <Movie movie={movie} key={movie.id} alterWatched={props.alterWatched}/>
     });
   }
 
   return (
-    <div className="list-group">
-      {renderedList}
+    <div className="row">
+      <div className="col">
+        {renderedList}
+      </div>
     </div>
   );
 

@@ -10,7 +10,7 @@ class AddMovie extends React.Component {
 
   render() {
     return (
-      <div className="input-group">
+      <div className="col input-group">
         <input
         onChange={e => this.setState({movieText: e.target.value})}
         value={this.state.movieText}

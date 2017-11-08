@@ -21,27 +21,37 @@ class App extends React.Component {
   }
 
   addMovie = (movie) => {
-    let movieObj = {title: movie};
+    let movieObj = {title: movie, watched: false};
     this.setState({
       movies: movies.concat([movieObj])
     });
+  }
+
+  alterWatched = (movieObj) => {
+    let updatedMovies = this.state.movies.map((movie) => {
+      if (movieObj.id === movie.id) {
+        movie.watched = !movie.watched;
+      }
+      return movie;
+    })
+    this.setState({
+      movies: updatedMovies
+    })
   }
  
   render() {
     return (
       <div className="container">
         <div className="row">
-          <h1 className="display-3">Movie List</h1>
+          <div className="col">
+            <h1 className="display-3">Movie List</h1>
+          </div>
         </div>
         <div className="row">
           <AddMovie addMovie={this.addMovie} />
         </div>
-        <div className="row">
           <SearchBar searchText={this.state.searchText} setSearchText={this.setSearchText}/>
-        </div>
-        <div className="row">
-          <MovieList movies={this.state.movies} searchText={this.state.searchText} />
-        </div>
+          <MovieList movies={this.state.movies} searchText={this.state.searchText} alterWatched={this.alterWatched}/>
       </div>
     );
   }
